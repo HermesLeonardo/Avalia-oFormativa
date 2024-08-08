@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="en-us"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+
+
+
+
+<h:head>
+    <title>Projeto</title>
+    <h:outputScript name="primefaces/locales/locale-pt.js" />
+</h:head>
+
+<h:body>
+
+    <h:form>
+
+        <p:panel header="Cadastro de pessoa">
+            <p:messages id="Mensagem" closable="true"/>
+
+            <h:panelGrid id="PainelPessoa" columns="2">
+
+                <p:outputLabel value="Código Pessoa" />
+                <p:inputText value="#{cadastroControlador}"
+                             readonly="true">
+                </p:inputText>
+
+                <p:outputLabel value="Nome"/>
+                <p:inputText size="20"
+                             maxlength="50"
+                             value="#{cadastroControlador.cliente.nome}"
+                             required="true"
+                             requiredMessage="O campo nome é obrigatorio"/>
+
+                <p:outputLabel value="CPF"/>
+                <p:inputMask id="CPF"
+                             size="20"
+                             value="#{cadastroControlador.cliente.CPF}"
+                             mask="999.999.999-99" validateMask="true"
+                             required="true"
+                             requiredMessage="O campo CPF é obrigatorio"
+                             converter="jakarta.faces.Character">
+                    <f:validateLongRange minimum="1" />
+                </p:inputMask>
+
+                <p:outputLabel value="Data de Nascimento"/>
+                <p:calendar readonlyInput="true"
+                            pattern="dd/MM/yyyy"
+                            value="#{cadastroControlador.cliente.dadaNasc}"
+                            required="true"
+                            requiredMessage="o campo de data de nascimento é obrigatorio"/>
+            </h:panelGrid>
+        </p:panel>
+
+
+
+        <p:panel header="Cadastro Endereço">
+            <h:panelGrid columns="2">
+
+                <p:outputLabel value="Código Endereço" />
+                <p:inputText value="#{cadastroControlador.endereco.codigoEndereco}"
+                             readonly="true">
+                </p:inputText>
+
+                <p:outputLabel value="Rua"/>
+                <p:inputText size="20"
+                             maxlength="50"
+                             value="#{cadastroControlador.endereco.rua}"
+                             required="true"
+                             requiredMessage="O campo Rua é obrigatorio"/>
+
+                <p:outputLabel value="Numero casa"/>
+                <p:inputText size="20"
+                             maxlength="5"
+                             value="#{cadastroControlador.endereco.numeroCasa}"
+                             required="true"
+                             requiredMessage="O campo Numero da Casa é obrigatorio"
+                             converterMessage="Esse valor tem que ser numerico"/>
+
+                <p:outputLabel value="Bairro"/>
+                <p:inputText size="20"
+                             maxlength="25"
+                             value="#{cadastroControlador.endereco.bairro}"
+                             required="true"
+                             requiredMessage="O campo Bairro é obrigatorio"/>
+
+                <p:outputLabel value="Cidade"/>
+                <p:inputText size="20"
+                             maxlength="20"
+                             value="#{cadastroControlador.endereco.cidade}"
+                             required="true"
+                             requiredMessage="O campo cidade é obrigtorio"/>
+
+                <p:outputLabel value="UF"/>
+                <p:inputText size="20"
+                             maxlength="2"
+                             value="#{cadastroControlador.endereco.UF}"
+                             required="true"
+                             requiredMessage="O campo UF é obrigtorio"/>
+
+                <p:outputLabel value="CEP"/>
+                <p:inputMask size="20"
+                             value="#{cadastroControlador.endereco.CEP}"
+                             mask="99.999-999" validateMask="true"
+                             required="true"
+                             requiredMessage="O campo CEP é obrigtorio"
+                             converter="jakarta.faces.Character"/>
+                <f:validateLongRange minimum="1" />
+
+
+                <p:outputLabel value="Complemento"/>
+                <p:inputText size="20"
+                             maxlength="20"
+                             value="#{cadastroControlador.endereco.complemento}"
+                             required="true"
+                             requiredMessage="O campo cidade é obrigtorio"/>
+
+            </h:panelGrid>
+
+
+        </p:panel>
+
+        <p:panel header="Cadastro Carro">
+
+            <h:panelGrid columns="2">
+
+                <p:outputLabel value="Código carro" />
+                <p:inputText value="#{cadastroControlador.carro.codigoCarro}"
+                             readonly="true">
+                </p:inputText>
+
+                <p:outputLabel value="Marca do carro"/>
+                <p:inputText size="20"
+                             maxlength="30"
+                             value="#{cadastroControlador.carro.marca}"
+                             required="true"
+                             requiredMessage="O campo marca do carro é obrigatorio"/>
+
+                <p:outputLabel value="Modelo do carro"/>
+                <p:inputText size="20"
+                             maxlength="20"
+                             value="#{cadastroControlador.carro.modelo}"
+                             required="true"
+                             requiredMessage="O campo marca do carro é obrigatorio"/>
+
+                <p:outputLabel value="Ano da fabricação do carro"/>
+                <p:calendar readonlyInput="true"
+                            pattern="dd/MM/yyyy"
+                            value="#{cadastroControlador.carro.anoFabricacao}"
+                            required="true"
+                            requiredMessage="O campo ano de fabrigação é obrigatorio"/>
+
+                <p:outputLabel value="Ano do modelo"/>
+                <p:calendar readonlyInput="true"
+                            pattern="dd/MM/yyyy"
+                            value="#{cadastroControlador.carro.anoModelo}"
+                            required="true"
+                            requiredMessage="O campo ano do modelo é obrigatorio"/>
+
+                <p:outputLabel value="Valor do carro"/>
+                <p:inputText size="20"
+                             maxlength="6"
+                             value="#{cadastroControlador.carro.valor}"
+                             required="true"
+                             requiredMessage="O campo do valor do carro é obrigatorio"/>
+
+            </h:panelGrid>
+
+            <h:panelGrid columns="1">
+
+                <p:commandButton value="Salvar"
+                                 actionListener="#{cadastroControlador.salvar()}"
+                                 update="mensagem"/>
+
+            </h:panelGrid>
+
+
+
+
+        </p:panel>
+
+
+    </h:form>
+
+
+</h:body>
+
+</html>
